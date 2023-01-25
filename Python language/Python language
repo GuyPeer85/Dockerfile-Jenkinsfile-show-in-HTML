@@ -1,0 +1,12 @@
+<html>
+    <head>
+        <title>Python language</title>
+    </head>
+
+    <body>
+         <p></p>
+	       <h4><strong><span style="text-decoration: underline;">Hello and welcome</span></strong></h4>
+         <h4>you choose the <span style="text-decoration: underline;">Python</span> language</h4>
+         <p>have a great day at work</p>
+    </body>
+</html>
