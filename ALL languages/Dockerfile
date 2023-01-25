@@ -1,5 +1,3 @@
-FROM httpd:latest
-
-COPY ./'ALL languages'/index.html /usr/local/apache2/htdocs/index.html
-
+FROM httpd:2.4
+COPY ./index.html /usr/local/apache2/htdocs/
 EXPOSE 7777
