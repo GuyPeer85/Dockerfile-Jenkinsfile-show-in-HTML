@@ -1,3 +1,7 @@
 FROM httpd:latest
-WORKDIR ./'ALL languages'/
-COPY ./index.html /usr/local/apache2/htdocs/
+
+WORKDIR /usr/local/apache2/htdocs/
+
+COPY ./all/index.html /usr/local/apache2/htdocs/index.html
+
+EXPOSE 7777
