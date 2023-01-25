@@ -1,2 +1,3 @@
 FROM httpd:latest
-COPY ./'Jave language'/index.html /usr/local/apache2/htdocs/
+COPY ./index.html /usr/local/apache2/htdocs/
+EXPOSE 7777
