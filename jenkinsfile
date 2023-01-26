@@ -1,1 +1,99 @@
-test
+pipeline {
+    agent any
+    parameters {
+        choice(name: 'Language_choosing', 
+        choices: ['ALL languages','Java language','Python language','C language'],
+        description: 'User select the Language to send to mail')
+
+        string(name: 'recipient',
+        defaultValue: 'guypeer1985@gmail.com',
+        description: 'Enter email recipient')
+    }
+    stages{
+        stage('step:1 communication and clone with GitHub') {
+            steps{
+                script {
+                    if(!fileExists('/var/lib/jenkins/workspace/class_project_git_jenkins_docker')) {
+                        git url: 'https://github.com/GuyPeer85/dockerfile-jenkinsfile-show-in-html.git', 
+                        branch: 'main'
+                    }
+                    }
+                }
+            }
+            stage('step:2 checking what dockerfile to read') {
+                steps{
+                    script {
+                        if(params.Language_choosing == 'ALL languages') {
+                            sh "touch ./'ALL languages'/index.html"
+                            sh "cp ./'ALL languages'/'ALL languages' ./'ALL languages'/index.html"
+                        }
+                        if(params.Language_choosing == 'Java language') {
+                            sh "touch ./'Jave language'/index.html"
+                            sh "cp ./'Jave language'/'Java language' ./'Jave language'/index.html"
+                        }
+                        if(params.Language_choosing == 'Python language') {
+                            sh "touch ./'Python language'/index.html"
+                            sh "cp ./'Python language'/'Python language' ./'Python language'/index.html"
+                        }
+                        if(params.Language_choosing == 'C language') {
+                            sh "touch ./'C language'/index.html"
+                            sh "cp ./'C language'/'C language' './C language'/index.html"
+                        }
+                    }
+                }
+            }
+            stage('step:3 building image') {
+                steps{
+                    script {
+                        if(params.Language_choosing == 'ALL languages') {
+                            sh "cat ./'ALL languages'/Dockerfile > ./dockerfile"
+                            sh "cat ./'ALL languages'/index.html > ./index.html"
+                            sh "docker build -t apache-app ."
+                            sh "docker run -itd --name all_languages -p 7777:80 apache-app"
+                        }
+                        if(params.Language_choosing == 'Java language') {
+                            sh "cat ./'Jave language'/Dockerfile > ./dockerfile"
+                            sh "cat ./'Jave language'/index.html > ./index.html"
+                            sh "docker build -t apache-app ."
+                            sh "docker run -itd --name java_language -p 7777:80 apache-app"
+                        }
+                        if(params.Language_choosing == 'Python language') {
+                            sh "cat ./'Python language'/Dockerfile > ./dockerfile"
+                            sh "cat ./'Python language'/index.html > ./index.html"
+                            sh "docker build -t apache-app ."
+                            sh "docker run -itd --name python_language -p 7777:80 apache-app"
+                        }
+                        if(params.Language_choosing == 'C language') {
+                            sh "cat ./'C language'/Dockerfile > ./dockerfile"
+                            sh "cat ./'C language'/index.html > ./index.html"
+                            sh "docker build -t apache-app ."
+                            sh "docker run -itd --name c_language -p 7777:80 apache-app"
+                        }
+                    }
+                }
+            }
+                
+    }
+    // step 4: result
+    post {
+        success {
+            echo 'This will run only if the job finished successfully'
+            echo 'The job success'
+            emailext(
+                to: params.recipient,
+                subject: "Job success ${env.JOB_NAME} ${env.BUILD_NUMBER}",
+                body: 'The job run success results'
+                )
+        }
+        failure {
+            echo 'This will run only if the job finished failed'
+            echo 'The job failed'
+            emailext(
+                to: params.recipient,
+                subject: "Job Failure: ${env.JOB_NAME} ${env.BUILD_NUMBER}",
+                body: "The job run failed results"
+                )
+        }
+    }
+}
+
