@@ -24,5 +24,7 @@ step: 4
 Importent Infomation:
 ---------------------
 The job will not work, only befor running the job run the code: 
+
 sudo chmod 666 /var/run/docker.sock in the terminal.
+
 That make the right configuration for the job to run succssfull
