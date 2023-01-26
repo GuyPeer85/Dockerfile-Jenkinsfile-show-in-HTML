@@ -1,6 +1,6 @@
 # dockerfile-jenkinsfile-show-in-html
 Here you can see the diagram of the pipeline:
-============================================
+---------------------------------------------
 
 ![docker jenkins class project diagram drawio](https://user-images.githubusercontent.com/106809238/214575536-7b6f5e89-9303-421c-8c50-ab24844258b0.png)
 
@@ -21,3 +21,8 @@ step: 3
 step: 4
 1. The job send by mail and Jenkins platform the resulte with link to see the text resulte
 
+Importent Infomation:
+---------------------
+The job will not work, only befor running the job run the code: sudo chmod 666 /var/run/docker.sock
+In the terminal.
+That make the right configuration for the job to run succssfull
