@@ -21,10 +21,18 @@ step: 3
 step: 4
 1. The job send by mail and Jenkins platform the resulte with link to see the text resulte
 
+if get succssfull job To see the resulte: ip-address:7777 
+
 Importent Infomation:
 ---------------------
-The job will not work, only befor running the job run the code: 
+1. The job will not work, only befor running the job run the code: 
 
 sudo chmod 666 /var/run/docker.sock in the terminal.
 
 That make the right configuration for the job to run succssfull
+
+2. After run the first time and got job succssfull you need to do:
+  a. stop the docker work
+  b. rm the docker work
+
+
