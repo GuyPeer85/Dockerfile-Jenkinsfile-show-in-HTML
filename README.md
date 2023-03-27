@@ -27,12 +27,12 @@ Importent Infomation:
 ---------------------
 1. The job will not work, only befor running the job run the code: 
 
-Sudo chmod 666 /var/run/docker.sock in the terminal.
+Sudo `chmod 666` `/var/run/docker.sock` in the terminal.
 
 That make the right configuration for the job to run succssfull
 
 2. After run the first time and got job succssfull you need to do:
-  a. stop the docker work
-  b. rm the docker work
+  a. `stop` the docker work
+  b. `rm` the docker work
 
 
